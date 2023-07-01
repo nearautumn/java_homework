@@ -19,12 +19,12 @@ public class Program {
             case 1:
                 task1();
                 break;
-//            case 2:
-//                  task2();
-//                break;
-//            case 3:
-//                task3();
-//                break;
+            case 2:
+                task2();
+                break;
+            case 3:
+                task3();
+                break;
 //            case 4:
 //                task4();
 //                break;
@@ -52,4 +52,26 @@ public class Program {
         }
         System.out.printf("Факториал числа %d равен %d", userNumber, factorial);
     }
+
+    static void task2() {
+        // 2) Вывести все простые числа от 1 до 1000
+        System.out.println("Список простых чисел от 1 до 1000");
+        for (int i = 2; i < 1000; i++) {
+            boolean a = true;
+            int q = (int) Math.sqrt(i);
+            for (int j = 2; j <= q; j++) {
+                if ((i % j) == 0) {
+                    a = false;
+                    break;
+                }
+            }
+            if (a) {
+                System.out.println(i);
+            }
+        }
+    }
+
+
+    }
+
 }
