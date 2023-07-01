@@ -39,6 +39,17 @@ public class Program {
         System.out.println("Задание: Вычислить n-ое треугольного число (сумма чисел от 1 до n), n! (произведение чисел от 1 до n)");
         System.out.print("Введите число: ");
         int userNumber = Integer.parseInt(sc.nextLine());
-        
+        // находим треугольное число
+        int triangle = 0;
+        for (int i = 1; i <= userNumber; i++) {
+            triangle = triangle + i;
+        }
+        System.out.printf("%d-ое треугольное число равняется %d\n", userNumber, triangle);
+        // находим факториал
+        int factorial = 1;
+        for (int i = 1; i <= userNumber; i++) {
+            factorial = factorial * i;
+        }
+        System.out.printf("Факториал числа %d равен %d", userNumber, factorial);
     }
 }
