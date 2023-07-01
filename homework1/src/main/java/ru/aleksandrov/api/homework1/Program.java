@@ -70,7 +70,58 @@ public class Program {
             }
         }
     }
+    static void task3() {
+        // 3) Реализовать простой калькулятор
+        System.out.println("Калькулятор");
+        System.out.println("Выберите действие");
+        System.out.println("1 - Сложение");
+        System.out.println("2 - Вычитание");
+        System.out.println("3 - Умножение");
+        System.out.println("4 - Деление");
+        System.out.println("5 - Возведение в степень");
+        System.out.println("6 - Квадратный корень");
 
+        int userChoice = Integer.parseInt(sc.nextLine());
+
+        switch (userChoice) {
+            case 1:
+                System.out.print("Введите первое число: ");
+                double a = Double.parseDouble(sc.nextLine());
+                System.out.print("Введите второе число: ");
+                double b = Double.parseDouble(sc.nextLine());
+                System.out.printf("%f + %f = %f", a, b, (a + b));
+            case 2:
+                System.out.print("Введите первое число: ");
+                double c = Double.parseDouble(sc.nextLine());
+                System.out.print("Введите второе число: ");
+                double d = Double.parseDouble(sc.nextLine());
+                System.out.printf("%f -  %f = %f", c, d, (c - d));
+            case 3:
+                System.out.print("Введите первое число: ");
+                double e = Double.parseDouble(sc.nextLine());
+                System.out.print("Введите второе число: ");
+                double f  = Double.parseDouble(sc.nextLine());
+                System.out.printf("%f * %f = %f", e, f, (e * f));
+            case 4:
+                System.out.print("Введите первое число: ");
+                double g = Double.parseDouble(sc.nextLine());
+                System.out.print("Введите второе число: ");
+                double h = Double.parseDouble(sc.nextLine());
+                System.out.printf("%f / %f = %f", g, h, (g / h));
+            case 5:
+                System.out.print("Введите число: ");
+                double i = Double.parseDouble(sc.nextLine());
+                System.out.print("Введите степень: ");
+                double j = Double.parseDouble(sc.nextLine());
+                System.out.printf("%f в степени %f = %f", i, j, (Math.pow(i, j)));
+            case 6:
+                System.out.print("Введите число: ");
+                double k  = Double.parseDouble(sc.nextLine());
+                System.out.printf("Квадратный корень числа %f = %f", k, (Math.sqrt(k)));
+            default:
+                System.out.println("Некорректный ввод!");
+                break;
+        }
 
     }
 
