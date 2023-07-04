@@ -1,12 +1,15 @@
 package ru.aleksandrov.api.homework1;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Program {
 
     static  Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         System.out.println("Выберите задание: ");
         System.out.println("1 - Задача 1");
@@ -70,8 +73,11 @@ public class Program {
             }
         }
     }
-    static void task3() {
+    static void task3() throws IOException {
         // 3) Реализовать простой калькулятор
+        File logFile = new File("log.txt");
+        FileWriter fw = new FileWriter(logFile, true);
+
         System.out.println("Калькулятор");
         System.out.println("Выберите действие");
         System.out.println("1 - Сложение");
@@ -83,41 +89,67 @@ public class Program {
 
         int userChoice = Integer.parseInt(sc.nextLine());
 
+        String out;
+
         switch (userChoice) {
             case 1:
                 System.out.print("Введите первое число: ");
                 double a = Double.parseDouble(sc.nextLine());
                 System.out.print("Введите второе число: ");
                 double b = Double.parseDouble(sc.nextLine());
-                System.out.printf("%f + %f = %f", a, b, (a + b));
+                out = a + " + " + b + " = "   + (a + b) + '\n';
+                System.out.printf(out);
+                fw.write(out);
+                fw.close();
+                break;
             case 2:
                 System.out.print("Введите первое число: ");
                 double c = Double.parseDouble(sc.nextLine());
                 System.out.print("Введите второе число: ");
                 double d = Double.parseDouble(sc.nextLine());
-                System.out.printf("%f -  %f = %f", c, d, (c - d));
+                out = c + " - " + d + " = "   + (c - d) + '\n';
+                System.out.printf(out);
+                fw.write(out);
+                fw.close();
+                break;
             case 3:
                 System.out.print("Введите первое число: ");
                 double e = Double.parseDouble(sc.nextLine());
                 System.out.print("Введите второе число: ");
                 double f  = Double.parseDouble(sc.nextLine());
-                System.out.printf("%f * %f = %f", e, f, (e * f));
+                out = e + " x " + f + " = "   + (e * f) + '\n';
+                System.out.printf(out);
+                fw.write(out);
+                fw.close();
+                break;
             case 4:
                 System.out.print("Введите первое число: ");
                 double g = Double.parseDouble(sc.nextLine());
                 System.out.print("Введите второе число: ");
                 double h = Double.parseDouble(sc.nextLine());
-                System.out.printf("%f / %f = %f", g, h, (g / h));
+                out = g + " / " + h + " = "   + (g / h) + '\n';
+                System.out.printf(out);
+                fw.write(out);
+                fw.close();
+                break;
             case 5:
                 System.out.print("Введите число: ");
                 double i = Double.parseDouble(sc.nextLine());
                 System.out.print("Введите степень: ");
                 double j = Double.parseDouble(sc.nextLine());
-                System.out.printf("%f в степени %f = %f", i, j, (Math.pow(i, j)));
+                out = i + " ^ " + j + " = "  + (Math.pow(i, j)) + '\n';
+                System.out.printf(out);
+                fw.write(out);
+                fw.close();
+                break;
             case 6:
                 System.out.print("Введите число: ");
                 double k  = Double.parseDouble(sc.nextLine());
-                System.out.printf("Квадратный корень числа %f = %f", k, (Math.sqrt(k)));
+                out = "Квадратный корень числа " + k + " равен " + Math.sqrt(k) + '\n';
+                System.out.printf(out);
+                fw.write(out);
+                fw.close();
+                break;
             default:
                 System.out.println("Некорректный ввод!");
                 break;
