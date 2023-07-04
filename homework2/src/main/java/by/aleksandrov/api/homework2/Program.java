@@ -51,7 +51,6 @@ public class Program {
         fw.write("Initial array: ");
         fw.write(out);
 
-
         double temp;
 
         fw.write("Sorting... \n");
