@@ -20,8 +20,8 @@ public class Program {
 
         switch (userChoice) {
             case 1:
-//                task1();
-//                break;
+                task1();
+                break;
             case 2:
                 task2();
                 break;
@@ -31,6 +31,33 @@ public class Program {
             default:
                 System.out.println("Некорректный номер задачи!");
                 break;
+        }
+    }
+
+    static void task1() {
+        /**
+         * 1) Дана строка sql-запроса "select * from students where ". Сформируйте часть WHERE этого запроса, используя
+         * StringBuilder. Данные для фильтрации приведены ниже в виде json-строки.
+         * Если значение null, то параметр не должен попадать в запрос.
+         * Параметры для фильтрации: {"name":"Ivanov", "country":"Russia", "city":"Moscow", "age":"null"}
+         */
+
+        System.out.println("Вывод SQL запроса");
+
+        String data = "{\"name\":\"Ivanov\",\"country\":\"Russia\",\"city\":\"Moscow\",\"age\":\"null\"}";
+        data = data.replace((char)34, (char)32);
+        data = data.replace(":", "=");
+        data = data.substring(data.indexOf("{")+1, data.indexOf("}"));
+        String[] inputArray = data.split(", ");
+        String request = "select * from students where";
+
+        StringBuilder sb = new StringBuilder(request);
+        for (int i = 0; i < inputArray.length; i++) {
+            if (!inputArray[i].contains("null")) {
+                sb.append(inputArray[i]);
+                System.out.println(sb);
+                sb = new StringBuilder(sb.delete(sb.indexOf("where ") + 6, sb.length()));
+            }
         }
     }
 
@@ -68,9 +95,5 @@ public class Program {
         fw.close();
         System.out.println("Файл записан!");
         //System.out.println(Arrays.toString(numbers));
-
-
-
-
     }
 }
