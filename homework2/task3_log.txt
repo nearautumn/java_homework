@@ -1,0 +1,2 @@
+июл. 05, 2023 8:52:42 PM by.aleksandrov.api.homework2.Program task3
+INFO: task3.txt успешно загружен!
