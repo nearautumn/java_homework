@@ -27,8 +27,8 @@ public class Program {
                 task1();
                 break;
             case 2:
-//                task2();
-//                break;
+                task2();
+                break;
             default:
                 System.out.println("Некорректный номер задачи!");
                 break;
@@ -55,5 +55,21 @@ public class Program {
 
     static void task2() {
 
+        LinkedList ls = new LinkedList();
+        for (int i = 0; i < 5; i++) {
+            ls.add(i);
+        }
+        System.out.println("Исходный LinkedList: " + ls);
+
+        LinkedQueue lq = new LinkedQueue(ls);
+
+        lq.enqueue(14); //помещение элемента в конец очереди
+
+        System.out.println("Первый эемент очереди: " + lq.first()); //первый элемент очереди
+
+        for (int i = 0; i < 6; i++) {
+            System.out.println(lq.dequeue()); // последовательное вывод и удаление элементов из начала очереди
+        }
     }
 }
+
