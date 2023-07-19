@@ -2,6 +2,8 @@ package by.aleksandrov.api.homework6;
 
 import java.util.Objects;
 
+/**
+ * Класс описывает котиков и позволяет их сравнивать друг с другом*/
 public class Cat {
     private String name;
     private double weight;
@@ -9,7 +11,14 @@ public class Cat {
     private String eyesColor;
     private String breed;
 
-
+    /**
+     * @param name Кличка котика
+     * @param coatColor Цвет шерсти
+     * @param eyesColor Цвет глаз
+     * @param weight Вес
+     * @param breed Порода
+     * @note Все строковые аргументы не чувствительны к регистру
+     * */
     public Cat(String name, String coatColor, String eyesColor, double weight, String breed) {
         this.name = name.toLowerCase();
         this.coatColor = coatColor.toLowerCase();
@@ -17,7 +26,7 @@ public class Cat {
         this.breed = breed.toLowerCase();
         if (weight > 18) {
             throw new RuntimeException("Самый большой кот весил 18 кг. Этот рекорд не побить никому");
-        } else if (weight < 0) {
+        } else if (weight <= 0) {
             throw new RuntimeException("Антикотов не существует");
         }
         else this.weight = weight;
