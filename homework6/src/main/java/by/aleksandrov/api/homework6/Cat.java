@@ -1,5 +1,12 @@
 package by.aleksandrov.api.homework6;
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.exceptions.CsvValidationException;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.*;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -16,14 +23,16 @@ public class Cat {
      * @param coatColor Цвет шерсти
      * @param eyesColor Цвет глаз
      * @param weight Вес
-     * @param breed Порода
+     * @param breed Порода. Записывается на английском языке в соответствии с таблицей пород (метод showAllBreeds())
      * @note Все строковые аргументы не чувствительны к регистру
      * */
-    public Cat(String name, String coatColor, String eyesColor, double weight, String breed) {
+    public Cat(String name, String coatColor, String eyesColor, double weight, String breed)
+            throws IOException, CsvValidationException {
         this.name = name.toLowerCase();
         this.coatColor = coatColor.toLowerCase();
         this.eyesColor = eyesColor.toLowerCase();
-        this.breed = breed.toLowerCase();
+        if (compare(breed)) this.breed = breed.toLowerCase();
+        else throw new RuntimeException("Такой породы не существует");
         if (weight > 18) {
             throw new RuntimeException("Самый большой кот весил 18 кг. Этот рекорд не побить никому");
         } else if (weight <= 0) {
@@ -75,8 +84,12 @@ public class Cat {
         return capitalize(breed);
     }
 
-    public void setBreed(String breed) {
-        this.breed = breed.toLowerCase();
+    /**
+     * @param breed Порода. Записывается на английском языке в соответствии с таблицей пород (метод showAllBreeds())
+     * */
+    public void setBreed(String breed) throws IOException, CsvValidationException{
+        if (compare(breed)) this.breed = breed.toLowerCase();
+        else throw new RuntimeException("Такой породы не существует");
     }
 
     @Override
@@ -100,7 +113,40 @@ public class Cat {
         return Objects.hash(name, weight, coatColor, eyesColor, breed);
     }
 
-    private String capitalize(String str) {
+    private @NotNull String capitalize(@NotNull String str) {
         return str.substring(0,1).toUpperCase() + str.substring(1);
+    }
+
+    /**
+     * Выводит перечень всех пород котиков с описанием*/
+    public static void showAllBreeds() throws IOException, CsvValidationException {
+        FileReader reader = new FileReader("cat_breeds.csv");
+        CSVReader csvReader = new CSVReaderBuilder(reader)
+                .withSkipLines(1)
+                .build();
+
+        String[] line;
+        while ((line = csvReader.readNext()) != null) {
+            System.out.println(Arrays.toString(line));
+        }
+        reader.close();
+        csvReader.close();
+    }
+
+    private boolean compare(String breed) throws IOException, CsvValidationException {
+        FileReader reader = new FileReader("cat_breeds.csv");
+        CSVReader csvReader = new CSVReader(reader);
+
+        String[] line;
+        while ((line = csvReader.readNext()) != null) {
+            String l = Arrays.toString(line);
+            String res = l.substring(1, l.indexOf(","));
+            if (res.equals(breed)) {
+                return true;
+            }
+        }
+        reader.close();
+        csvReader.close();
+        return false;
     }
 }
