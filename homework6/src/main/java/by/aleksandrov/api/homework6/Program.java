@@ -1,10 +1,9 @@
 package by.aleksandrov.api.homework6;
 
-import java.io.IOException;
 import java.util.HashSet;
 
 public class Program {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Cat cat1 = new Cat("Барсик", "Рыжий", "Зеленый", 6.2, "Беспородный");
         System.out.println(cat1);
 
